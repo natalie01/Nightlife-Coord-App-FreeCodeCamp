@@ -1,0 +1,11 @@
+extends layout
+block content
+  div.container.container-search
+    h1 Nightlife Coordination App
+    .col-lg-8.col-lg-offset-2
+      form(method="POST", action="/findplaces")
+        .input-group
+          input.form-control(type='text', placeholder='Where are you?' name="place")
+          span.input-group-btn
+            input.btn.btn-danger(type='submit' value="Let's go!")
+

@@ -1,0 +1,21 @@
+extends layout
+block content
+  .container.container-results
+    h1 My Places
+    hr
+    if results
+      ul.list-results
+        each result,i in results
+          div.row
+            li
+              div.col-12.col-sm-7
+                ul.list-results
+                  li.list-results-item #{result.name}
+                  li.list-results-item #{result.address}
+              if user
+                div.col-12.col-sm-3.col-sm-offset-2
+                  form(method='POST' action='/users/places/cancel')
+                    input(type="hidden" ,name="placename", value=result.name)
+                    input(type='submit',class="btn btn-info", value="Not going") 
+          hr
+    a(href="/listplaces" class="btn btn-primary") Back

@@ -1,0 +1,28 @@
+extends layout
+block content
+  .container.container-form
+    .row
+      .col-lg-12.col-md-12
+        h1 Login
+        if errors
+          p #{errors}
+        form(method="POST", action="/users/login")
+          #form-group
+            label  Username: 
+            input.form-control(name="name",type="text")
+          #form-group
+            label  Password: 
+            input.form-control(name="password",type="password")
+          br
+          input.btn.btn-primary.login-button(type="submit",value="Submit")
+          br
+        div.social-buttons
+            h4 Login with:
+            a.btn.btn-fb(href='/users/auth/facebook')
+              i.fa.fa-facebook
+              | Facebook
+            a.btn.btn-tw(href='/users/auth/twitter') 
+              i.fa.fa-twitter
+              | Twitter
+
+

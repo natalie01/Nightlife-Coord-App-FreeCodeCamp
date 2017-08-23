@@ -1,0 +1,35 @@
+extends layout
+block content
+  div.container.container-search.container-search-listplaces
+    .col-lg-8.col-lg-offset-2
+      form(method="POST", action="/findplaces")
+        .input-group
+          input.form-control(type='text', placeholder='Search places near...' name="place")
+          span.input-group-btn
+            input.btn.btn-danger(type='submit' value="Let's go!")
+  div.container.container-results
+    h1 Places
+    hr
+    if results
+      div.list-results
+        ul
+          each result,i in results
+            li
+              ul
+                li.list-results-item #{result.name}
+                if user
+                  form(method='POST' action='/users/places')
+                    input(type="hidden" ,name="index", value=i)
+                    input(type='submit',class="btn btn-primary btn-place", value="I'm going")
+                if !user
+                  a(href="/users/login",class="btn btn-primary btn-place")  Login to Go!
+                if !result.is_closed 
+                  li.list-results-item open
+                else
+                  li.list-results-item closed
+                li.list-results-item review : #{result.rating}
+                li.list-results-item price : #{result.price}
+                li.list-results-item #{result.location.display_address || result.address}
+            hr
+      if points
+        input(type="hidden",id = 'points' ,name="pontos" value=points)              

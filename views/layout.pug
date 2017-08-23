@@ -1,0 +1,51 @@
+doctype html
+head
+  title NightLife Coordination App
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  link(rel='stylesheet', href='/style.css')
+  link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+nav.navbar.navbar-inverse
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+    #myNavbar.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li
+          span 
+            i.fa.fa-moon-o(aria-hidden='true')
+        li.active
+          a(href='/') Home
+      ul.nav.navbar-nav.navbar-right
+        if user
+          li
+            a(href='#') Hello, #{user.local.name || user.facebook.name || user.twitter.username}
+          li
+            a(href='/users/myplaces') My Places
+          li
+            a(href='/users/logout') Logout
+        if !user
+          li
+            a(href='/users/register')
+              span.glyphicon.glyphicon-user
+              |  Sign Up
+          li
+            a(href='/users/login')
+              span.glyphicon.glyphicon-log-in
+              |  Login
+.container
+  !=messages('message',locals)
+  if errors
+    each error, i in errors
+      div(class="alert alert-danger") #{error.msg}
+             
+body
+  div.container-fluid
+  block content
+script(src="/main.js")     

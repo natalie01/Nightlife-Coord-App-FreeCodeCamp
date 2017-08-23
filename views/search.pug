@@ -1,0 +1,8 @@
+div.container.container-search
+  h1 #{title}
+  .col-lg-8.col-lg-offset-2
+    form(method="POST", action="/findplaces")
+      .input-group
+        input.form-control(type='text', placeholder='Search places near...' name="place")
+        span.input-group-btn
+          input.btn.btn-danger(type='submit' value="Let's go!")
